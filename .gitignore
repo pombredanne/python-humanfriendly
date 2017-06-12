@@ -1,5 +1,10 @@
+*.egg-info/
+.coverage
+.coverage.*
+dist/*.tar.gz
+dist/*.zip
 docs/_build/
 docs/_static/
 docs/_templates/
 docs/build/
-humanfriendly.egg-info/
+htmlcov/

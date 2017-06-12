@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-#
-# documentation build configuration file for the 'humanfriendly' package. This
-# file is execfile()d with the current directory set to its containing dir.
 
-import sys, os
+"""Documentation build configuration file for the `humanfriendly` package."""
+
+import os
+import sys
 
 # Add the 'humanfriendly' source distribution's root directory to the module path.
 sys.path.insert(0, os.path.abspath('..'))
@@ -11,7 +11,15 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- General configuration -----------------------------------------------------
 
 # Sphinx extension module names.
-extensions = ['sphinx.ext.doctest', 'sphinx.ext.autodoc', 'sphinx.ext.intersphinx']
+extensions = [
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
+    'humanfriendly.sphinx',
+]
+
+# Configuration for the `autodoc' extension.
+autodoc_member_order = 'bysource'
 
 # Paths that contain templates, relative to this directory.
 templates_path = ['templates']
@@ -24,14 +32,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'humanfriendly'
-copyright = u'2013, Peter Odding'
+copyright = u'2017, Peter Odding'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 
 # Find the package version and make it the release.
-from humanfriendly import __version__ as humanfriendly_version
+from humanfriendly import __version__ as humanfriendly_version  # noqa
 
 # The short X.Y version.
 version = '.'.join(humanfriendly_version.split('.')[:2])
@@ -55,18 +63,16 @@ pygments_style = 'sphinx'
 
 # Refer to the Python standard library.
 # From: http://twistedmatrix.com/trac/ticket/4582.
-intersphinx_mapping = {'python': ('http://docs.python.org', None)}
+intersphinx_mapping = dict(
+    python2=('https://docs.python.org/2', None),
+    python3=('https://docs.python.org/3', None),
+)
 
 # -- Options for HTML output ---------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = 'default'
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['static']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'humanfriendlydoc'
